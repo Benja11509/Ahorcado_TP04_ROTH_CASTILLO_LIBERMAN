@@ -16,20 +16,16 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        Partida.crearPartida();
-        ViewBag.Palabra = Partida.Palabra;
-        ViewBag.Intentos = Partida.Palabra();
-        ViewBag.Vivo = 
+
+        return View();
+    }
+    public IActionResult Juego()
+    {
+        partida.crearPartida();
+        ViewBag.Palabra = partida.Palabra;
+        ViewBag.LetrasUsadas = partida.LetrasUsadas;
+        ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
         return View();
     }
 
-    public IActionResult Partida()
-    {
-    
-
-
-        return View();
-    
-
-        }
 }

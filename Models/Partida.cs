@@ -6,14 +6,15 @@ using System.Web;
 
 namespace TP04.Models
 {
-    public static class Partida
+    public static class partida
     {
 
         public static string Palabra { get; private set; }
         public static List<char> LetrasUsadas { get; private set; }
-        public static bool Vivo { get; private set; }
-
+        public static char[] LetrasAdivinadas;
         public static string[] opciones = new string[] { "Agujero", "Platano", "Auto", "Dibujo", "Escuela", "Fiesta", "Galleta", "Héroico", "Juguete" };
+
+
 
         public static void crearPartida()
         {
@@ -22,41 +23,57 @@ namespace TP04.Models
 
             LetrasUsadas = new List<char>();
 
-            Vivo = true;
+            char[] LetrasAdivinadas = new char[Palabra.Length];
+
+            for (int i = 0; i == Palabra.Length; i++)
+            {
+
+                LetrasAdivinadas[i] = '_';
+            }
+
         }
-        public static bool IngresarLetra(char letra)
+        public static char[] IngresarLetra(char letra)
         {
             letra = char.ToUpper(letra);
 
-            if (LetrasUsadas.Contains(letra) || !Vivo)
+            if (LetrasUsadas.Contains(letra))
             {
-                return false;
+                return LetrasAdivinadas;
 
             }
             else
             {
                 LetrasUsadas.Add(letra);
 
-
-
-
                 if (!Palabra.Contains(letra))
                 {
-                    if (LetrasUsadas.Count(l => !Palabra.Contains(l)) >= 6) // Puedes cambiar 6 por el máximo de errores
-                        Vivo = false;
+                    LetrasUsadas.Add(letra);
                 }
-                else if (Palabra.All(c => LetrasUsadas.Contains(c)))
+                else
                 {
-                    Gano = true;
-                    Vivo = false;
+                    LetrasUsadas.Add(letra);
+                    LetrasAdivinadas[Palabra.IndexOf(letra)] = letra;
+
+                    //FRAN DSPS ARREGLÁ QUE ESTO SÓLO VA A FUNCIONAR PARA UNA LETRA :V XD XDDDDDDD//
                 }
 
-                return true;
+                return LetrasAdivinadas;
             }
 
         }
+        public static bool IngresarPalabra(string p)
+        {
+
+            if (p == Palabra)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
-
-
-    }}
+    }
+}
