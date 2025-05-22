@@ -4,5 +4,14 @@
 
 <div>
     <h1>AHORCADO</h1>
-    <a href="Juego">JUGAR </a>
+
+    @{
+        
+        List<char> letrasUsadas = new List<char>();
+        char[] LetrasAdivinadas = null; 
+    }
+
+    <a href='@Url.Action("Juego", "Home", new { LU = letrasUsadas , LA = LetrasAdivinadas})'>a</a>
+
+    
 </div>

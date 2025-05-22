@@ -19,12 +19,17 @@ public class HomeController : Controller
 
         return View();
     }
-    public IActionResult Juego()
+    public IActionResult Juego(List<char> LU, char[] LA)
     {
-        partida.crearPartida();
+        
+        
+
+        partida.crearPartida(LU, LA);
+        
         ViewBag.Palabra = partida.Palabra;
         ViewBag.LetrasUsadas = partida.LetrasUsadas;
         ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
+        ViewBag.DuraciónPalabra = (partida.Palabra).Length;
         return View();
     }
 

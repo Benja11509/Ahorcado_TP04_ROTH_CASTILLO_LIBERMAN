@@ -12,24 +12,28 @@ namespace TP04.Models
         public static string Palabra { get; private set; }
         public static List<char> LetrasUsadas { get; private set; }
         public static char[] LetrasAdivinadas;
-        public static string[] opciones = new string[] { "Agujero", "Platano", "Auto", "Dibujo", "Escuela", "Fiesta", "Galleta", "Héroico", "Juguete" };
+        public static string[] opciones = new string[] { "LUNA", "NIEVE", "PERROS", "GALLETA", "MONTAÑA", "ESCRITOR", "FOTOGRAMA" };
 
 
-
-        public static void crearPartida()
+        public static void crearPartida(List<char> LU, char[] LA)
         {
-            Random r = new Random();
-            Palabra = opciones[r.Next(1, 10)];
-
-            LetrasUsadas = new List<char>();
-
-            char[] LetrasAdivinadas = new char[Palabra.Length];
-
-            for (int i = 0; i == Palabra.Length; i++)
+            if (Palabra == null)
             {
-
-                LetrasAdivinadas[i] = '_';
+                Random r = new Random();
+                Palabra = opciones[r.Next(1, opciones.Length)];
             }
+            LetrasUsadas = LU;
+
+            if (LA == null)
+            {
+                LetrasAdivinadas = new char[Palabra.Length];
+
+                for (int i = 0; i < Palabra.Length; i++)
+                {
+                    LetrasAdivinadas[i] = '_';
+                }
+            }
+
 
         }
         public static char[] IngresarLetra(char letra)
@@ -54,7 +58,7 @@ namespace TP04.Models
                     LetrasUsadas.Add(letra);
                     LetrasAdivinadas[Palabra.IndexOf(letra)] = letra;
 
-                    //FRAN DSPS ARREGLÁ QUE ESTO SÓLO VA A FUNCIONAR PARA UNA LETRA :V XD XDDDDDDD//
+                    //FRAN DSPS ARREGLÁ QUE ESTO SÓLO VA A FUNCIONAR PARA UNA LETRA//
                 }
 
                 return LetrasAdivinadas;
