@@ -16,21 +16,28 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        partida.crearPartida();
 
-        return View();
+        return View("Index");
     }
-    public IActionResult Juego(List<char> LU, char[] LA)
+    [HttpPost]
+    public IActionResult AdivinarLetra(List<char> letrasUsadas, char[] letrasAdivinadas, char letraTirada)
     {
-        
-        
-
-        partida.crearPartida(LU, LA);
-        
+        partida.crearPartida();
+        partida.IngresarLetra(letraTirada);
         ViewBag.Palabra = partida.Palabra;
-        ViewBag.LetrasUsadas = partida.LetrasUsadas;
+        ViewBag.LetrasUsadas = partida.LetrasUsadas;        
         ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
+
+        return View("Juego");
+    }
+    public IActionResult AdivinarPalabra(List<char> letrasUsadas, char[] letrasAdivinadas, string palabraTirada)
+    {
+        partida.crearPartida();
+        partida.IngresarPalabra(palabraTirada);
         ViewBag.DuraciónPalabra = (partida.Palabra).Length;
-        return View();
+
+        return View("Juego");
     }
 
 }

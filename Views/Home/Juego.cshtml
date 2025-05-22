@@ -4,7 +4,7 @@
 
     <div>
         @if (ViewBag.LetrasAdivinadas != null)
-{ <h1>a</h1>
+{
     <h3>
         @foreach (char a in ViewBag.LetrasAdivinadas)
         {
@@ -13,13 +13,21 @@
     </h3>
 }
 
-        <form action="@Url.Action("Juego", "Home")" method="POST" enctype="multipart/form-data">
+        <form action='@Url.Action("letraTirada", "Home")' method="POST" enctype="multipart/form-data">
 
-            <input type="text" name="brunoSosHermoso" maxlength="1">
+            <input type="text" name="letraTirada" maxlength="1">
             <input type="submit" value="Adivinar Letra" />
 
-            <input type="text" name="brunoTeAmo" maxlength="@(ViewBag.DuraciónPalabra)">
+        </form>
+
+    </div>
+    <div>
+    @if (ViewBag.palabraTirada != null){
+
+        <form action='@Url.Action("palabraTirada", "Home")' method="POST" enctype="multipart/form-data">
+
+            <input type="text" name="palabraTirada" maxlength="@(ViewBag.DuraciónPalabra)">
             <input type="submit" value="Adivinar Palabra" />
 
         </form>
-    </div>
+    }

@@ -15,16 +15,15 @@ namespace TP04.Models
         public static string[] opciones = new string[] { "LUNA", "NIEVE", "PERROS", "GALLETA", "MONTAÑA", "ESCRITOR", "FOTOGRAMA" };
 
 
-        public static void crearPartida(List<char> LU, char[] LA)
+        public static void crearPartida()
         {
             if (Palabra == null)
             {
                 Random r = new Random();
                 Palabra = opciones[r.Next(1, opciones.Length)];
             }
-            LetrasUsadas = LU;
 
-            if (LA == null)
+            if (LetrasAdivinadas == null)
             {
                 LetrasAdivinadas = new char[Palabra.Length];
 
@@ -43,7 +42,6 @@ namespace TP04.Models
             if (LetrasUsadas.Contains(letra))
             {
                 return LetrasAdivinadas;
-
             }
             else
             {
@@ -63,12 +61,11 @@ namespace TP04.Models
 
                 return LetrasAdivinadas;
             }
-
         }
-        public static bool IngresarPalabra(string p)
+        public static bool IngresarPalabra(string palabra)
         {
 
-            if (p == Palabra)
+            if (palabra == Palabra)
             {
                 return true;
             }
@@ -77,7 +74,5 @@ namespace TP04.Models
                 return false;
             }
         }
-
-
     }
 }
