@@ -39,6 +39,11 @@ public class HomeController : Controller
         ViewBag.LetrasUsadas = partida.LetrasUsadas;
         ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
 
+        if(partida.pCompleta){
+
+            AdivinarPalabra(partida.Palabra);
+        }
+
         return View("Juego");
     }
     public IActionResult AdivinarPalabra(string palabraTirada)
@@ -46,7 +51,6 @@ public class HomeController : Controller
 
         ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
         ViewBag.Palabra = partida.Palabra;
-        ViewBag.DuraciónPalabra = (partida.Palabra).Length;
 
         return View("Final");
     }
