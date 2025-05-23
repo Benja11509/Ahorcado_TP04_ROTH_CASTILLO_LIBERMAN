@@ -12,8 +12,8 @@ namespace TP04.Models
         public static string Palabra { get; private set; }
         public static List<char> LetrasUsadas { get; private set; }
         public static char[] LetrasAdivinadas;
-        public static string[] opciones = new string[] { "LUNA", "NIEVE", "PERROS", "GALLETA", "MONTAÑA", "ESCRITOR", "FOTOGRAMA" };
-
+        public static string[] opciones = new string[] { "LUNA", "NIEVE", "PERROS", "GALLETA", "MONTAJE", "ESCRITOR", "FOTOGRAMA" };
+        public static int Intentos { get; private set; }
 
         public static void crearPartida()
         {
@@ -35,10 +35,16 @@ namespace TP04.Models
                 }
             }
 
+            Intentos  = 0;
+
         }
         public static char[] IngresarLetra(char letra)
         {
             letra = char.ToUpper(letra);
+
+            if(letra >= 65 && letra <= 90){
+
+            
 
             if (LetrasUsadas.Contains(letra))
             {
@@ -56,6 +62,13 @@ namespace TP04.Models
                         LetrasAdivinadas[i] = letra;
                     }
                 }
+            }}
+
+            string LA = new string(LetrasAdivinadas);
+            
+            if(Palabra == LA){
+                
+                IngresarPalabra(LA);
             }
 
             return LetrasAdivinadas;
@@ -63,7 +76,7 @@ namespace TP04.Models
         public static bool IngresarPalabra(string palabra)
         {
 
-            if (palabra == Palabra)
+            if (palabra.ToUpper() == Palabra)
             {
                 return true;
             }

@@ -34,7 +34,7 @@ public class HomeController : Controller
     public IActionResult AdivinarLetra(char letraTirada)
     {
         partida.IngresarLetra(letraTirada);
-
+        ViewBag.Intentos += 1;
         ViewBag.Palabra = partida.Palabra;
         ViewBag.LetrasUsadas = partida.LetrasUsadas;
         ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
@@ -44,8 +44,7 @@ public class HomeController : Controller
     public IActionResult AdivinarPalabra(string palabraTirada)
     {
 
-        ViewBag.Ganaste =
-        partida.IngresarPalabra(palabraTirada);
+        ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
         ViewBag.Palabra = partida.Palabra;
         ViewBag.DuraciónPalabra = (partida.Palabra).Length;
 

@@ -20,7 +20,7 @@
             }
         </h2> 
 
-
+        <h3>Intentos = @ViewBag.Intentos</h3>
     }
 
     <form action='@Url.Action("AdivinarLetra", "Home")' method="POST" enctype="multipart/form-data">
@@ -36,7 +36,7 @@
 
     <form action='@Url.Action("AdivinarPalabra", "Home")' method="POST" enctype="multipart/form-data">
 
-        <input type="text" name="AdivinarPalabra" maxlength="@(ViewBag.Palabra.Length)">
+        <input type="text" name="palabraTirada" maxlength="@(ViewBag.Palabra.Length)">
         <input type="submit" value="Adivinar Palabra" />
 
     </form>
