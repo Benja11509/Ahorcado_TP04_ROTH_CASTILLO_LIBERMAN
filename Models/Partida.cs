@@ -23,6 +23,8 @@ namespace TP04.Models
                 Palabra = opciones[r.Next(1, opciones.Length)];
             }
 
+            LetrasUsadas = new List<char>();
+
             if (LetrasAdivinadas == null)
             {
                 LetrasAdivinadas = new char[Palabra.Length];
@@ -33,7 +35,6 @@ namespace TP04.Models
                 }
             }
 
-
         }
         public static char[] IngresarLetra(char letra)
         {
@@ -43,24 +44,21 @@ namespace TP04.Models
             {
                 return LetrasAdivinadas;
             }
-            else
+
+            LetrasUsadas.Add(letra);
+
+            if (Palabra.Contains(letra))
             {
-                LetrasUsadas.Add(letra);
-
-                if (!Palabra.Contains(letra))
+                for (int i = 0; i < Palabra.Length; i++)
                 {
-                    LetrasUsadas.Add(letra);
+                    if (Palabra[i] == letra)
+                    {
+                        LetrasAdivinadas[i] = letra;
+                    }
                 }
-                else
-                {
-                    LetrasUsadas.Add(letra);
-                    LetrasAdivinadas[Palabra.IndexOf(letra)] = letra;
-
-                    //FRAN DSPS ARREGLÁ QUE ESTO SÓLO VA A FUNCIONAR PARA UNA LETRA//
-                }
-
-                return LetrasAdivinadas;
             }
+
+            return LetrasAdivinadas;
         }
         public static bool IngresarPalabra(string palabra)
         {

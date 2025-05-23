@@ -2,32 +2,32 @@
     ViewData["Title"] = "Juego";
 }
 
-    <div>
-        @if (ViewBag.LetrasAdivinadas != null)
-{
-    <h3>
-        @foreach (char a in ViewBag.LetrasAdivinadas)
-        {
-            @($"{a} ")
-        }
-    </h3>
-}
-
-        <form action='@Url.Action("letraTirada", "Home")' method="POST" enctype="multipart/form-data">
-
-            <input type="text" name="letraTirada" maxlength="1">
-            <input type="submit" value="Adivinar Letra" />
-
-        </form>
-
-    </div>
-    <div>
-    @if (ViewBag.palabraTirada != null){
-
-        <form action='@Url.Action("palabraTirada", "Home")' method="POST" enctype="multipart/form-data">
-
-            <input type="text" name="palabraTirada" maxlength="@(ViewBag.DuraciónPalabra)">
-            <input type="submit" value="Adivinar Palabra" />
-
-        </form>
+<div>
+    @if (ViewBag.LetrasAdivinadas != null)
+    {
+        <h3>
+            @foreach (char a in ViewBag.LetrasAdivinadas)
+            {
+                @($"{a} ")
+            }
+        </h3>
     }
+
+    <form action='@Url.Action("AdivinarLetra", "Home")' method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="letraTirada" maxlength="1">
+        <input type="submit" value="Adivinar Letra" />
+
+    </form>
+
+</div>
+<div>
+
+
+    <form action='@Url.Action("AdivinarPalabra", "Home")' method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="AdivinarPalabra" maxlength="@(ViewBag.DuraciónPalabra)">
+        <input type="submit" value="Adivinar Palabra" />
+
+    </form>
+</div>
