@@ -39,20 +39,23 @@ public class HomeController : Controller
         ViewBag.LetrasUsadas = partida.LetrasUsadas;
         ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
 
-        if(partida.pCompleta){
+        if(!partida.LetrasAdivinadas.Contains('_'))
+        {
+            ViewBag.Ganaste = true;
+            ViewBag.Palabra = partida.Palabra;
 
-            AdivinarPalabra(partida.Palabra);
+            return View("Final");
         }
 
         return View("Juego");
-    }
-    public IActionResult AdivinarPalabra(string palabraTirada)
-    {
+}
+public IActionResult AdivinarPalabra(string palabraTirada)
+{
 
-        ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
-        ViewBag.Palabra = partida.Palabra;
+    ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
+    ViewBag.Palabra = partida.Palabra;
 
-        return View("Final");
-    }
+    return View("Final");
+}
 
 }

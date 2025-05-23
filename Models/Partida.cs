@@ -34,38 +34,38 @@ namespace TP04.Models
                     LetrasAdivinadas[i] = '_';
                 }
             }
-            
+
             pCompleta = false;
-            Intentos  = 0;
+            Intentos = 0;
 
         }
         public static char[] IngresarLetra(char letra)
         {
             letra = char.ToUpper(letra);
 
-            if(letra >= 65 && letra <= 90){
-
-            
-
-            if (LetrasUsadas.Contains(letra))
+            if (letra >= 65 && letra <= 90)
             {
-                return LetrasAdivinadas;
-            }
 
-            LetrasUsadas.Add(letra);
-
-            if (Palabra.Contains(letra))
-            {
-                for (int i = 0; i < Palabra.Length; i++)
+                if (LetrasUsadas.Contains(letra))
                 {
-                    if (Palabra[i] == letra)
+                    return LetrasAdivinadas;
+                }
+
+                LetrasUsadas.Add(letra);
+
+                if (Palabra.Contains(letra))
+                {
+                    for (int i = 0; i < Palabra.Length; i++)
                     {
-                        LetrasAdivinadas[i] = letra;
+                        if (Palabra[i] == letra)
+                        {
+                            LetrasAdivinadas[i] = letra;
+                        }
                     }
                 }
-            }}
+            }
 
-            if(!LetrasAdivinadas.Contains('_'))
+            if (LetrasAdivinadas.Contains('_'))
             {
                 bool pCompleta = true;
             }
@@ -85,7 +85,7 @@ namespace TP04.Models
             }
 
             return pCompleta;
-        
+
         }
     }
 }
