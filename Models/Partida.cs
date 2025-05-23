@@ -36,6 +36,7 @@ namespace TP04.Models
             }
 
             pCompleta = false;
+
             Intentos = 0;
 
         }
@@ -50,6 +51,8 @@ namespace TP04.Models
                 {
                     return LetrasAdivinadas;
                 }
+                
+                Intentos++;
 
                 LetrasUsadas.Add(letra);
 
@@ -65,10 +68,6 @@ namespace TP04.Models
                 }
             }
 
-            if (LetrasAdivinadas.Contains('_'))
-            {
-                bool pCompleta = true;
-            }
 
             return LetrasAdivinadas;
         }

@@ -26,6 +26,7 @@ public class HomeController : Controller
         ViewBag.Palabra = partida.Palabra;
         ViewBag.LetrasUsadas = partida.LetrasUsadas;
         ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
+        ViewBag.Intentos = partida.Intentos;
 
         return View("Juego");
     }
@@ -34,12 +35,12 @@ public class HomeController : Controller
     public IActionResult AdivinarLetra(char letraTirada)
     {
         partida.IngresarLetra(letraTirada);
-        ViewBag.Intentos += 1;
+        ViewBag.Intentos = partida.Intentos;
         ViewBag.Palabra = partida.Palabra;
         ViewBag.LetrasUsadas = partida.LetrasUsadas;
         ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
 
-        if(!partida.LetrasAdivinadas.Contains('_'))
+        if (!partida.LetrasAdivinadas.Contains('_'))
         {
             ViewBag.Ganaste = true;
             ViewBag.Palabra = partida.Palabra;
@@ -48,14 +49,14 @@ public class HomeController : Controller
         }
 
         return View("Juego");
-}
-public IActionResult AdivinarPalabra(string palabraTirada)
-{
+    }
+    public IActionResult AdivinarPalabra(string palabraTirada)
+    {
 
-    ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
-    ViewBag.Palabra = partida.Palabra;
+        ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
+        ViewBag.Palabra = partida.Palabra;
 
-    return View("Final");
-}
+        return View("Final");
+    }
 
 }
