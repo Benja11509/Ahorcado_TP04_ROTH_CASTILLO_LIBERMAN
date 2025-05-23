@@ -52,7 +52,10 @@ public class HomeController : Controller
     }
     public IActionResult AdivinarPalabra(string palabraTirada)
     {
+        if(palabraTirada == null ){
 
+        return View("Juego");
+        }
         ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
         ViewBag.Palabra = partida.Palabra;
 
