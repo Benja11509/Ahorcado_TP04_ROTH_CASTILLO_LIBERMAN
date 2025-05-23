@@ -3,14 +3,24 @@
 }
 
 <div>
-    @if (ViewBag.LetrasAdivinadas != null)
+    @if (ViewBag.LetrasAdivinadas != null && ViewBag.letrasUsadas != null)
     {
         <h3>
             @foreach (char a in ViewBag.LetrasAdivinadas)
             {
                 @($"{a} ")
             }
+
         </h3>
+
+        <h2>
+            @foreach (char a in ViewBag.letrasUsadas)
+            {
+                @($"{a} ")
+            }
+        </h2> 
+
+
     }
 
     <form action='@Url.Action("AdivinarLetra", "Home")' method="POST" enctype="multipart/form-data">
@@ -26,7 +36,7 @@
 
     <form action='@Url.Action("AdivinarPalabra", "Home")' method="POST" enctype="multipart/form-data">
 
-        <input type="text" name="AdivinarPalabra" maxlength="@(ViewBag.DuraciónPalabra)">
+        <input type="text" name="AdivinarPalabra" maxlength="@(ViewBag.Palabra.Length)">
         <input type="submit" value="Adivinar Palabra" />
 
     </form>

@@ -41,10 +41,12 @@ public class HomeController : Controller
 
         return View("Juego");
     }
-    public IActionResult AdivinarPalabra(List<char> letrasUsadas, char[] letrasAdivinadas, string palabraTirada)
+    public IActionResult AdivinarPalabra(string palabraTirada)
     {
 
+        ViewBag.Ganaste =
         partida.IngresarPalabra(palabraTirada);
+        ViewBag.Palabra = partida.Palabra;
         ViewBag.DuraciónPalabra = (partida.Palabra).Length;
 
         return View("Final");
