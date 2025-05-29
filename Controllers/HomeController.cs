@@ -52,14 +52,24 @@ public class HomeController : Controller
     }
     public IActionResult AdivinarPalabra(string palabraTirada)
     {
-        if(palabraTirada == null ){
+        if (palabraTirada == null)
+        {
 
-        return View("Juego");
+            return View("Juego");
         }
         ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
         ViewBag.Palabra = partida.Palabra;
 
         return View("Final");
     }
+    partida party = new partida(email, password);
+    HttpContext.Session.SetString("user", Objeto.ObjectToString(usu));
+
+    ViewBag.User = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("user"));
+    if(ViewBag.User is null)
+    List<Usuario> users = new List<Usuario>();
+    HttpContext.Session.SetString("users", Objetos.ListToString(users));
+    ViewBag.Users Objetos.StringToList<Usuario>(HttpContext.Session.GetString("users"));
+    if(ViewBag.Users is null)
 
 }

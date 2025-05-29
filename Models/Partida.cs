@@ -2,19 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using Newtonsoft.Json;
 
 namespace TP04.Models
 {
     public static class partida
     {
-
+        [JsonProperty]
         public static string Palabra { get; private set; }
+        [JsonProperty]
         public static List<char> LetrasUsadas { get; private set; }
+        [JsonProperty]
         public static char[] LetrasAdivinadas { get; private set; }
+        [JsonProperty]
         public static string[] opciones = new string[] { "LUNA", "NIEVE", "PERROS", "GALLETA", "MONTAJE", "ESCRITOR", "FOTOGRAMA" };
+        [JsonProperty]
         public static int Intentos { get; private set; }
+        [JsonProperty]
         public static bool pCompleta { get; private set; }
+
         public static void crearPartida()
         {
             if (Palabra == null)
@@ -51,7 +57,7 @@ namespace TP04.Models
                 {
                     return LetrasAdivinadas;
                 }
-                
+
                 Intentos++;
 
                 LetrasUsadas.Add(letra);
