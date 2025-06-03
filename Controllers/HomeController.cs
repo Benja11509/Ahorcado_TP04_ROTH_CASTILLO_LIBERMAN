@@ -16,17 +16,22 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        partida.crearPartida();
+        partida Ahorcado = new partida();
+        Ahorcado.crearPartida();
+
+        HttpContext.Session.SetString("partida", Objeto.ObjectToString(Ahorcado));
 
         return View("Index");
     }
 
     public IActionResult Juego()
     {
-        ViewBag.Palabra = partida.Palabra;
-        ViewBag.LetrasUsadas = partida.LetrasUsadas;
-        ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
-        ViewBag.Intentos = partida.Intentos;
+        partida a = Objeto.StringToObject<partida>(HttpContext.Session.GetString("partida"));
+
+        ViewBag.Palabra = a.Palabra;
+        ViewBag.LetrasUsadas = a.LetrasUsadas;
+        ViewBag.LetrasAdivinadas = a.LetrasAdivinadas;
+        ViewBag.Intentos = a.Intentos;
 
         return View("Juego");
     }
@@ -34,16 +39,21 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult AdivinarLetra(char letraTirada)
     {
-        partida.IngresarLetra(letraTirada);
-        ViewBag.Intentos = partida.Intentos;
-        ViewBag.Palabra = partida.Palabra;
-        ViewBag.LetrasUsadas = partida.LetrasUsadas;
-        ViewBag.LetrasAdivinadas = partida.LetrasAdivinadas;
+        partida a = Objeto.StringToObject<partida>(HttpContext.Session.GetString("partida"));
 
-        if (!partida.LetrasAdivinadas.Contains('_'))
+        a.IngresarLetra(letraTirada);
+
+        HttpContext.Session.SetString("partida", Objeto.ObjectToString(a));
+
+        ViewBag.Intentos = a.Intentos;
+        ViewBag.Palabra = a.Palabra;
+        ViewBag.LetrasUsadas = a.LetrasUsadas;
+        ViewBag.LetrasAdivinadas = a.LetrasAdivinadas;
+
+        if (!a.LetrasAdivinadas.Contains('_'))
         {
             ViewBag.Ganaste = true;
-            ViewBag.Palabra = partida.Palabra;
+            ViewBag.Palabra = a.Palabra;
 
             return View("Final");
         }
@@ -52,24 +62,17 @@ public class HomeController : Controller
     }
     public IActionResult AdivinarPalabra(string palabraTirada)
     {
+        partida a = Objeto.StringToObject<partida>(HttpContext.Session.GetString("partida"));
+
         if (palabraTirada == null)
         {
 
             return View("Juego");
         }
-        ViewBag.Ganaste = partida.IngresarPalabra(palabraTirada);
-        ViewBag.Palabra = partida.Palabra;
+        ViewBag.Ganaste = a.IngresarPalabra(palabraTirada);
+        ViewBag.Palabra = a.Palabra;
 
         return View("Final");
     }
-    partida party = new partida(email, password);
-    HttpContext.Session.SetString("user", Objeto.ObjectToString(usu));
-
-    ViewBag.User = Objeto.StringToObject<Usuario>(HttpContext.Session.GetString("user"));
-    if(ViewBag.User is null)
-    List<Usuario> users = new List<Usuario>();
-    HttpContext.Session.SetString("users", Objetos.ListToString(users));
-    ViewBag.Users Objetos.StringToList<Usuario>(HttpContext.Session.GetString("users"));
-    if(ViewBag.Users is null)
 
 }

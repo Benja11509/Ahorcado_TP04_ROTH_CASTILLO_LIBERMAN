@@ -7,7 +7,7 @@ public static class Objeto
     }
 
 
-public static T? StringToobject<T>(string txt)
+public static T? StringToObject<T>(string txt)
     {
 
         if (string.IsNullOrEmpty(txt))

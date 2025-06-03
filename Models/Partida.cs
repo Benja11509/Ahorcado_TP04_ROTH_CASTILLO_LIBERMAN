@@ -6,22 +6,22 @@ using Newtonsoft.Json;
 
 namespace TP04.Models
 {
-    public static class partida
+    public class partida
     {
         [JsonProperty]
-        public static string Palabra { get; private set; }
+        public string Palabra { get; private set; }
         [JsonProperty]
-        public static List<char> LetrasUsadas { get; private set; }
+        public List<char> LetrasUsadas { get; private set; }
         [JsonProperty]
-        public static char[] LetrasAdivinadas { get; private set; }
+        public char[] LetrasAdivinadas { get; private set; }
         [JsonProperty]
-        public static string[] opciones = new string[] { "LUNA", "NIEVE", "PERROS", "GALLETA", "MONTAJE", "ESCRITOR", "FOTOGRAMA" };
+        public string[] opciones = new string[] { "LUNA", "NIEVE", "PERROS", "GALLETA", "MONTAJE", "ESCRITOR", "FOTOGRAMA" };
         [JsonProperty]
-        public static int Intentos { get; private set; }
+        public int Intentos { get; private set; }
         [JsonProperty]
-        public static bool pCompleta { get; private set; }
+        public bool pCompleta { get; private set; }
 
-        public static void crearPartida()
+        public void crearPartida()
         {
             if (Palabra == null)
             {
@@ -46,7 +46,7 @@ namespace TP04.Models
             Intentos = 0;
 
         }
-        public static char[] IngresarLetra(char letra)
+        public char[] IngresarLetra(char letra)
         {
             letra = char.ToUpper(letra);
 
@@ -77,7 +77,7 @@ namespace TP04.Models
 
             return LetrasAdivinadas;
         }
-        public static bool IngresarPalabra(string palabra)
+        public bool IngresarPalabra(string palabra)
         {
 
             if (palabra.ToUpper() == Palabra)
